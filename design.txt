@@ -1,0 +1,10 @@
+Frontend: HTML5 + Advanced CSS + JavaScript
+Reactive UI/animations: Imba
+3D: WebGL
+Shaders: GLSL
+3D object creation: OpenSCAD
+Prototype storage: localStorage / local data
+Primary entry: index.html
+Design style: Futuristic Smart Medical Command Center
+Core UX: Real hospital appointment → check-in → token → live queue → consultation workflow
+3D philosophy: 3D for visual intelligence, HTML/CSS for operational clarity.

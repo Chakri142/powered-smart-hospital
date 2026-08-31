@@ -1,0 +1,51 @@
+/* ==========================================================================
+   POWERED SMART HOSPITAL (PSH) - HIGH CONTRAST ACCESSIBILITY THEME
+   ========================================================================== */
+
+.theme-high-contrast {
+  --bg-primary: #000000;
+  --bg-secondary: #121212;
+  --bg-surface: #000000;
+  --bg-surface-solid: #000000;
+  
+  --text-main: #ffffff;
+  --text-muted: #ffff00;
+  --text-light: #ffffff;
+  
+  --accent-blue: #00ffff;
+  --accent-blue-dark: #00cccc;
+  --accent-cyan: #00ffff;
+  
+  --border-color: #ffffff;
+  --glass-border: #ffffff;
+  --glass-bg: #000000;
+  
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-glow: none;
+}
+
+.theme-high-contrast .glass-card {
+  background: #000000 !important;
+  border: 2px solid #ffffff !important;
+  color: #ffffff !important;
+  backdrop-filter: none !important;
+}
+
+.theme-high-contrast .site-header {
+  background: #000000 !important;
+  border-bottom: 2px solid #ffffff !important;
+}
+
+.theme-high-contrast .btn-primary {
+  background: #ffff00 !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  border: 2px solid #ffffff !important;
+}
+
+.theme-high-contrast .badge {
+  border: 1px solid #ffffff !important;
+  background: #000000 !important;
+  color: #ffff00 !important;
+}
