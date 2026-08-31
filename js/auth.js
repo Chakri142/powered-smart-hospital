@@ -23,7 +23,7 @@
     'view-triage-station', 'view-doctor-dashboard', 'view-clinical-record', 
     'view-doctor-leave', 'view-admin-dashboard', 'view-doctor-management', 
     'view-schedule-management', 'view-department-management', 'view-room-management', 
-    'view-queue-rules', 'view-reports-audit', 'view-public-tv'
+    'view-queue-rules', 'view-reports-audit', 'view-public-tv', 'view-analytics-dashboard'
   ];
 
   var ROLE_PERMISSIONS = {

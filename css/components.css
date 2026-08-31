@@ -253,6 +253,66 @@
   box-shadow: 0 6px 16px rgba(37, 99, 235, 0.15);
 }
 
+/* ==========================================================================
+   CLINICAL ANALYTICS & DASHBOARD METRICS STYLES
+   ========================================================================== */
+
+.analytics-kpi-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+}
+
+.analytics-kpi-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.09);
+}
+
+.kpi-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.kpi-val {
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.kpi-sub {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-top: 6px;
+}
+
+.chart-card {
+  padding: 28px;
+  background: #ffffff;
+  border-radius: 24px;
+}
+
+.chart-bar-rect {
+  transition: transform 0.3s ease, opacity 0.2s ease;
+  cursor: pointer;
+}
+
+.chart-bar-rect:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+}
+
+.heatmap-cell:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2);
+}
+
 /* 3D POPUP MODALS & DIALOG SYSTEM */
 .modal-overlay-3d {
   position: fixed;

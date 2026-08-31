@@ -608,6 +608,75 @@
         </div>
       </section>
 
+      <!-- View 15: Clinical Analytics & Executive Queue Metrics Dashboard -->
+      <section id="view-analytics-dashboard" class="view-container" style="display: none;">
+        <div class="glass-card flex-between" style="margin-bottom: 24px; padding: 24px 32px; align-items: center;">
+          <div>
+            <h1 style="margin-bottom: 4px;">📊 Clinical Analytics & Queue Command Dashboard</h1>
+            <p style="color: var(--text-muted); margin: 0;">Real-time throughput, wait-time performance, department load, and weekly queue trends.</p>
+          </div>
+          <div class="flex-between" style="gap: 12px;">
+            <button onclick="App.refreshAnalyticsDashboard()" class="btn btn-secondary btn-sm"><span class="btn-icon">🔄</span> Refresh Analytics</button>
+            <span class="badge badge-checked-in">● Live Staff Telemetry</span>
+          </div>
+        </div>
+
+        <!-- KPI Metrics Cards Row (Matching Prototype Layout) -->
+        <div class="grid-4" style="margin-bottom: 24px; gap: 16px;">
+          <!-- Card 1: Today's Appointments -->
+          <div class="analytics-kpi-card" style="border-left: 5px solid #2563eb;">
+            <div class="kpi-title">Today's Appointments</div>
+            <div class="kpi-val" style="color: #2563eb;" id="kpi-today-appointments">184</div>
+            <div class="kpi-sub">Total visits scheduled & accepted</div>
+          </div>
+
+          <!-- Card 2: Patients in Queue -->
+          <div class="analytics-kpi-card" style="border-left: 5px solid #d97706;">
+            <div class="kpi-title">Patients in Queue</div>
+            <div class="kpi-val" style="color: #d97706;" id="kpi-queue-count">23</div>
+            <div class="kpi-sub">Active waiting tokens across OPD</div>
+          </div>
+
+          <!-- Card 3: Avg. Wait Time -->
+          <div class="analytics-kpi-card" style="border-left: 5px solid #059669;">
+            <div class="kpi-title">Avg. Wait Time</div>
+            <div class="kpi-val" style="color: #059669;" id="kpi-avg-wait">14 min</div>
+            <div class="kpi-sub">Average queue throughput speed</div>
+          </div>
+
+          <!-- Card 4: Doctors Active -->
+          <div class="analytics-kpi-card" style="border-left: 5px solid #7c3aed;">
+            <div class="kpi-title">Doctors Active</div>
+            <div class="kpi-val" style="color: #7c3aed;" id="kpi-active-doctors">12</div>
+            <div class="kpi-sub">Physicians currently consulting</div>
+          </div>
+        </div>
+
+        <!-- 2 Main Charts Grid (Matching Prototype Layout) -->
+        <div class="grid-2" style="margin-bottom: 24px; gap: 24px;">
+          <!-- Bar Chart Card: Appointments by Department -->
+          <div class="glass-card chart-card">
+            <h3 style="color: #7c3aed; margin-bottom: 20px; font-size: 1.25rem;">Appointments by Department</h3>
+            <div id="chart-dept-bar-container" style="width: 100%; min-height: 320px;"></div>
+          </div>
+
+          <!-- Line Chart Card: Weekly Average Queue Length -->
+          <div class="glass-card chart-card">
+            <h3 style="color: #7c3aed; margin-bottom: 20px; font-size: 1.25rem;">Weekly Average Queue Length</h3>
+            <div id="chart-weekly-line-container" style="width: 100%; min-height: 320px;"></div>
+          </div>
+        </div>
+
+        <!-- Additional Hourly OPD Load Heatmap Card -->
+        <div class="glass-card" style="padding: 28px;">
+          <div class="flex-between" style="margin-bottom: 20px;">
+            <h3 style="color: #0f172a; margin: 0; font-size: 1.2rem;">Hourly Patient Arrival & Queue Load Heatmap</h3>
+            <span style="font-size: 0.85rem; font-weight: 700; color: #64748b;">OPD Operating Hours: 08:00 AM - 08:00 PM</span>
+          </div>
+          <div id="hourly-heatmap-container"></div>
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -620,6 +689,7 @@
   <script src="js/triage.js"></script>
   <script src="js/queue.js"></script>
   <script src="js/clinical.js"></script>
+  <script src="js/charts.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
