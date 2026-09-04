@@ -50,12 +50,16 @@
 
     // Issue Manual Walk-In OPD Token
     issueWalkInToken: function(deptId, patientId) {
+      var targetDept = deptId || 'dept_genm';
+      var doctors = global.StorageEngine ? global.StorageEngine.getItem('doctors', []) : [];
+      var deptDoc = doctors.find(function(d) { return d.departmentId === targetDept; }) || doctors[0];
+
       return this.issueToken({
         appointmentId: 'apt_walkin_' + Date.now(),
         patientId: patientId || 'PID-2026-WALKIN',
-        departmentId: deptId || 'dept_genm',
-        doctorId: 'doc_1',
-        roomId: 'rm_101'
+        departmentId: targetDept,
+        doctorId: deptDoc ? deptDoc.doctorId : 'doc_1',
+        roomId: deptDoc ? (deptDoc.roomId || 'rm_101') : 'rm_101'
       });
     },
 

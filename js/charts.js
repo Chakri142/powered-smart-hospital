@@ -1,5 +1,5 @@
 /* ==========================================================================
-   POWERED SMART HOSPITAL (PSH) - VECTOR SVG CHART ENGINE
+   POWERED SMART HOSPITAL (PSH) - VECTOR SVG CHART ENGINE (SCANDINAVIAN THEME)
    ========================================================================== */
 
 (function(global) {
@@ -18,14 +18,14 @@
       var title = options.title || 'Appointments by Department';
 
       var width = container.clientWidth || 540;
-      var height = options.height || 320;
+      var height = options.height || 300;
       var padding = { top: 40, right: 30, bottom: 50, left: 30 };
 
       var chartW = width - padding.left - padding.right;
       var chartH = height - padding.top - padding.bottom;
 
       var maxVal = Math.max.apply(null, data.concat([100]));
-      maxVal = Math.ceil(maxVal / 10) * 10; // Round to nearest 10
+      maxVal = Math.ceil(maxVal / 10) * 10;
 
       var barGap = 16;
       var totalGaps = (data.length - 1) * barGap;
@@ -34,17 +34,14 @@
       var svgHtml = '<svg class="chart-svg" width="100%" height="' + height + '" viewBox="0 0 ' + width + ' ' + height + '" xmlns="http://www.w3.org/2000/svg">' +
         '<defs>' +
           '<linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">' +
-            '<stop offset="0%" stop-color="#2563eb"/>' +
-            '<stop offset="100%" stop-color="#3b82f6"/>' +
+            '<stop offset="0%" stop-color="#5F705C"/>' +
+            '<stop offset="100%" stop-color="#6E7A55"/>' +
           '</linearGradient>' +
-          '<filter id="barShadow" x="-10%" y="-10%" width="120%" height="120%">' +
-            '<feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#2563eb" flood-opacity="0.25"/>' +
-          '</filter>' +
         '</defs>';
 
       // X-Axis Baseline
       var baselineY = height - padding.bottom;
-      svgHtml += '<line x1="' + padding.left + '" y1="' + baselineY + '" x2="' + (width - padding.right) + '" y2="' + baselineY + '" stroke="#e2e8f0" stroke-width="2"/>';
+      svgHtml += '<line x1="' + padding.left + '" y1="' + baselineY + '" x2="' + (width - padding.right) + '" y2="' + baselineY + '" stroke="#E6DFD3" stroke-width="2"/>';
 
       // Bars & Labels
       for (var i = 0; i < data.length; i++) {
@@ -55,15 +52,15 @@
         var y = baselineY - valHeight;
 
         // Bar Rectangle
-        svgHtml += '<rect class="chart-bar-rect" x="' + x + '" y="' + y + '" width="' + barWidth + '" height="' + valHeight + '" rx="8" fill="url(#barGrad)" filter="url(#barShadow)">' +
+        svgHtml += '<rect class="chart-bar-rect" x="' + x + '" y="' + y + '" width="' + barWidth + '" height="' + valHeight + '" rx="6" fill="url(#barGrad)">' +
           '<title>' + lbl + ': ' + val + ' appointments</title>' +
         '</rect>';
 
         // Numerical Value Label on Top of Bar
-        svgHtml += '<text class="chart-value-text" x="' + (x + barWidth / 2) + '" y="' + (y - 8) + '" text-anchor="middle" font-weight="900" font-size="14" fill="#0f172a">' + val + '</text>';
+        svgHtml += '<text class="chart-value-text" x="' + (x + barWidth / 2) + '" y="' + (y - 8) + '" text-anchor="middle" font-weight="700" font-size="13" fill="#2C352E">' + val + '</text>';
 
         // X-Axis Category Label
-        svgHtml += '<text class="chart-axis-text" x="' + (x + barWidth / 2) + '" y="' + (baselineY + 24) + '" text-anchor="middle" font-weight="700" font-size="12" fill="#64748b">' + lbl + '</text>';
+        svgHtml += '<text class="chart-axis-text" x="' + (x + barWidth / 2) + '" y="' + (baselineY + 24) + '" text-anchor="middle" font-weight="600" font-size="11" fill="#6B6055">' + lbl + '</text>';
       }
 
       svgHtml += '</svg>';
@@ -81,7 +78,7 @@
       var data = options.data || [30, 42, 38, 55, 47, 33, 25];
 
       var width = container.clientWidth || 540;
-      var height = options.height || 320;
+      var height = options.height || 300;
       var padding = { top: 40, right: 35, bottom: 50, left: 35 };
 
       var chartW = width - padding.left - padding.right;
@@ -101,35 +98,28 @@
         points.push({ x: x, y: y, val: data[i], label: labels[i] });
       }
 
-      // Polyline points string
       var pathD = 'M ' + points.map(function(p) { return p.x + ',' + p.y; }).join(' L ');
 
-      var svgHtml = '<svg class="chart-svg" width="100%" height="' + height + '" viewBox="0 0 ' + width + ' ' + height + '" xmlns="http://www.w3.org/2000/svg">' +
-        '<defs>' +
-          '<filter id="lineGlow" x="-20%" y="-20%" width="140%" height="140%">' +
-            '<feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#059669" flood-opacity="0.3"/>' +
-          '</filter>' +
-        '</defs>';
+      var svgHtml = '<svg class="chart-svg" width="100%" height="' + height + '" viewBox="0 0 ' + width + ' ' + height + '" xmlns="http://www.w3.org/2000/svg">';
 
       // X-Axis Baseline
-      svgHtml += '<line x1="' + padding.left + '" y1="' + baselineY + '" x2="' + (width - padding.right) + '" y2="' + baselineY + '" stroke="#e2e8f0" stroke-width="2"/>';
+      svgHtml += '<line x1="' + padding.left + '" y1="' + baselineY + '" x2="' + (width - padding.right) + '" y2="' + baselineY + '" stroke="#E6DFD3" stroke-width="2"/>';
 
       // Line Path
-      svgHtml += '<path d="' + pathD + '" fill="none" stroke="#059669" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#lineGlow)"/>';
+      svgHtml += '<path d="' + pathD + '" fill="none" stroke="#6E7A55" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
 
       // Data Points & Labels
       for (var j = 0; j < points.length; j++) {
         var pt = points[j];
 
-        // Glowing Outer Circle
-        svgHtml += '<circle class="chart-line-point-outer" cx="' + pt.x + '" cy="' + pt.y + '" r="7" fill="#059669"/>';
-        svgHtml += '<circle class="chart-line-point-inner" cx="' + pt.x + '" cy="' + pt.y + '" r="3" fill="#ffffff"/>';
+        svgHtml += '<circle class="chart-line-point-outer" cx="' + pt.x + '" cy="' + pt.y + '" r="6" fill="#6E7A55"/>';
+        svgHtml += '<circle class="chart-line-point-inner" cx="' + pt.x + '" cy="' + pt.y + '" r="2.5" fill="#FAF8F3"/>';
 
         // Value text above point
-        svgHtml += '<text class="chart-value-text" x="' + pt.x + '" y="' + (pt.y - 12) + '" text-anchor="middle" font-weight="900" font-size="13" fill="#059669">' + pt.val + '</text>';
+        svgHtml += '<text class="chart-value-text" x="' + pt.x + '" y="' + (pt.y - 10) + '" text-anchor="middle" font-weight="700" font-size="12" fill="#6E7A55">' + pt.val + '</text>';
 
         // X-Axis Day Label
-        svgHtml += '<text class="chart-axis-text" x="' + pt.x + '" y="' + (baselineY + 24) + '" text-anchor="middle" font-weight="700" font-size="12" fill="#64748b">' + pt.label + '</text>';
+        svgHtml += '<text class="chart-axis-text" x="' + pt.x + '" y="' + (baselineY + 24) + '" text-anchor="middle" font-weight="600" font-size="11" fill="#6B6055">' + pt.label + '</text>';
       }
 
       svgHtml += '</svg>';
@@ -151,12 +141,12 @@
 
       for (var i = 0; i < hours.length; i++) {
         var ratio = loads[i] / max;
-        var bg = 'rgba(37, 99, 235, ' + (0.15 + ratio * 0.85) + ')';
-        var textColor = ratio > 0.6 ? '#ffffff' : '#0f172a';
+        var bg = 'rgba(95, 112, 92, ' + (0.12 + ratio * 0.78) + ')';
+        var textColor = ratio > 0.6 ? '#FFFFFF' : '#2C352E';
 
-        html += '<div style="flex: 1; min-width: 80px; background: ' + bg + '; color: ' + textColor + '; padding: 12px 8px; border-radius: 12px; text-align: center; font-weight: 800; font-size: 0.82rem; transition: transform 0.2s ease;" class="heatmap-cell">' +
+        html += '<div style="flex: 1; min-width: 80px; background: ' + bg + '; color: ' + textColor + '; padding: 12px 8px; border-radius: 10px; text-align: center; font-weight: 700; font-size: 0.82rem; transition: transform 0.2s ease;" class="heatmap-cell">' +
           '<div>' + hours[i] + '</div>' +
-          '<div style="font-size: 1.1rem; margin-top: 4px;">' + loads[i] + ' <span style="font-size: 0.72rem; opacity: 0.8;">pts</span></div>' +
+          '<div style="font-size: 1.05rem; margin-top: 4px;">' + loads[i] + ' <span style="font-size: 0.7rem; opacity: 0.8;">pts</span></div>' +
         '</div>';
       }
 

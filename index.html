@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PSH | Powered Smart Hospital Command Center</title>
 
-  <!-- Local CSS Stylesheets (Zero External Network Dependencies) -->
+  <!-- Local & System Google CSS Stylesheets -->
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/print.css">
@@ -20,23 +20,14 @@
 
     <!-- Top Accessible Navigation Header -->
     <header class="site-header no-print">
-      <!-- Sleek Modern Medical Shield & Pulse Logo Emblem -->
+      <!-- Scandinavian Cottagecore Leaf & Shield Brand Logo Emblem -->
       <a href="#home" class="brand-logo">
         <div class="brand-logo-emblem">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L3 6v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6l-9-4z" fill="url(#headerShieldGrad)" stroke="url(#headerShieldStroke)" stroke-width="1.2"/>
-            <path d="M7 12h2.5l1.5-3.5 2.5 7 2-4.5H17" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="12" cy="12" r="1.5" fill="#ffffff"/>
-            <defs>
-              <linearGradient id="headerShieldGrad" x1="3" y1="2" x2="21" y2="22" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#2563eb"/>
-                <stop offset="1" stop-color="#0284c7"/>
-              </linearGradient>
-              <linearGradient id="headerShieldStroke" x1="3" y1="2" x2="21" y2="22" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#60a5fa"/>
-                <stop offset="1" stop-color="#38bdf8"/>
-              </linearGradient>
-            </defs>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8 6 4 9 4 14a8 8 0 0 0 16 0c0-5-4-8-8-12z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 22V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M12 12c-2.5-1.5-4-1-5 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M12 16c2.5-1.5 4-1 5 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="brand-title-block">
@@ -45,9 +36,9 @@
         </div>
       </a>
 
-      <!-- Dynamic Role-Based Navigation Links (Clean Single Line) -->
+      <!-- Dynamic Role-Based Navigation Links -->
       <ul class="nav-links" id="main-nav-links">
-        <!-- Dynamically rendered by App.updateHeaderUI() based on active user role -->
+        <!-- Dynamically rendered by App.updateHeaderUI() -->
       </ul>
 
       <!-- User Security Header Actions -->
@@ -57,9 +48,8 @@
           <span id="header-user-role" class="user-role-tag">Guest</span>
         </div>
 
-        <div id="network-badge" class="network-badge">● ONLINE</div>
-        <button id="auth-btn" onclick="App.handleAuthBtnClick()" class="btn btn-primary btn-sm"><span class="btn-icon">🔑</span> Sign In</button>
-        <button onclick="ModalEngine.alert('Emergency SOS Triage Triggered', 'Emergency SOS Triage Bypass activated! Proceed immediately to Room 101 ER Desk.', 'danger')" class="btn-emergency btn-sm">SOS ER</button>
+        <button id="auth-btn" onclick="App.handleAuthBtnClick()" class="btn btn-primary btn-sm">Sign In</button>
+        <button onclick="ModalEngine.alert('Emergency SOS Triage Triggered', 'Emergency SOS Bypass activated! Proceed immediately to Room 101 ER Desk.', 'danger')" class="btn-emergency btn-sm">SOS ER</button>
       </div>
     </header>
 
@@ -68,51 +58,63 @@
 
       <!-- View 01: Home / Landing with Hospital Metrics & Accreditations -->
       <section id="view-home" class="view-container">
-        <div class="glass-card" style="margin-bottom: 32px; padding: 48px 40px; text-align: center; background: linear-gradient(135deg, #ffffff, #f0f7ff);">
-          <span class="badge badge-checked-in" style="margin-bottom: 16px;">Vibrant Clinical Engine</span>
-          <h1 style="margin-bottom: 16px;">Powered Smart Hospital (PSH) Command Center</h1>
-          <p style="font-size: 1.15rem; max-width: 820px; margin: 0 auto 32px;">Pioneering next-generation clinical queue orchestration, staff triage, live token tracking, and digital consultation management.</p>
-          <div class="flex-between" style="justify-content: center; gap: 18px; flex-wrap: wrap;">
-            <a href="#login" class="btn btn-primary btn-lg"><span class="btn-icon">🔑</span> Access Command Center / Sign In</a>
-            <a href="#register" class="btn btn-purple btn-lg"><span class="btn-icon">📝</span> Create Account / Register</a>
+        <div class="glass-card" style="margin-bottom: 32px; padding: 48px 40px; text-align: center; background: var(--bg-surface);">
+          <span class="badge badge-checked-in" style="margin-bottom: 16px;">Scandinavian Medical Simplicity</span>
+          <h1 style="margin-bottom: 14px; font-size: 2.4rem;">Powered Smart Hospital (PSH) Command Center</h1>
+          <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto 32px; color: var(--text-muted);">Pioneering next-generation clinical queue orchestration, staff triage, live token tracking, and digital consultation management.</p>
+          <div class="flex-between" style="justify-content: center; gap: 16px; flex-wrap: wrap;">
+            <a href="#login" class="btn btn-primary btn-lg">Access Command Center / Sign In</a>
+            <a href="#register" class="btn btn-purple btn-lg">Create Account / Register</a>
           </div>
         </div>
 
         <!-- Hospital Impact Metrics -->
         <div class="grid-4" style="margin-bottom: 36px;">
           <div class="glass-card text-center">
-            <div style="font-size: 2.2rem; font-weight: 900; color: var(--accent-blue);">500,000+</div>
-            <p style="font-weight: 700; margin-top: 4px;">Patients Served Annually</p>
+            <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 600; color: var(--accent-sage);">500,000+</div>
+            <p style="font-weight: 600; margin-top: 4px;">Patients Served Annually</p>
           </div>
           <div class="glass-card text-center">
-            <div style="font-size: 2.2rem; font-weight: 900; color: var(--accent-green);">&lt; 12 Mins</div>
-            <p style="font-weight: 700; margin-top: 4px;">Average OPD Queue Wait</p>
+            <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 600; color: var(--accent-olive);">&lt; 12 Mins</div>
+            <p style="font-weight: 600; margin-top: 4px;">Average OPD Queue Wait</p>
           </div>
           <div class="glass-card text-center">
-            <div style="font-size: 2.2rem; font-weight: 900; color: var(--accent-violet);">99.8%</div>
-            <p style="font-weight: 700; margin-top: 4px;">Clinical Queue Efficiency</p>
+            <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 600; color: var(--accent-teal);">99.8%</div>
+            <p style="font-weight: 600; margin-top: 4px;">Clinical Queue Efficiency</p>
           </div>
           <div class="glass-card text-center">
-            <div style="font-size: 2.2rem; font-weight: 900; color: var(--accent-cyan);">ISO 27001</div>
-            <p style="font-weight: 700; margin-top: 4px;">Certified Data Protection</p>
+            <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 600; color: var(--accent-taupe);">ISO 27001</div>
+            <p style="font-weight: 600; margin-top: 4px;">Certified Data Protection</p>
           </div>
+        </div>
+
+        <!-- Signature Feature 1: Hospital Flow Radar -->
+        <div class="glass-card" style="margin-bottom: 36px; padding: 28px;">
+          <div class="flex-between" style="margin-bottom: 20px;">
+            <div>
+              <h2 style="margin: 0;">📡 Hospital Flow Radar — Live Telemetry Map</h2>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">Real-time department congestion, active doctor availability & emergency priority telemetry.</p>
+            </div>
+            <span class="badge badge-submitted">Live Telemetry</span>
+          </div>
+          <div id="home-flow-radar-container"></div>
         </div>
 
         <!-- Accreditations & Global Recognition -->
         <h2 style="margin-bottom: 20px;">Accreditations, Awards & Global Standards</h2>
         <div class="grid-3" style="margin-bottom: 36px;">
           <div class="glass-card">
-            <span class="badge badge-confirmed" style="margin-bottom: 12px;">🏆 Global Award 2025</span>
+            <span class="badge badge-confirmed" style="margin-bottom: 12px;">Global Award 2025</span>
             <h3>Global Smart Healthcare Excellence Award</h3>
             <p>Recognized by the World Medical Technology Federation for outstanding clinical workflow orchestration and zero-latency patient triage.</p>
           </div>
           <div class="glass-card">
-            <span class="badge badge-checked-in" style="margin-bottom: 12px;">📜 International Accreditation</span>
+            <span class="badge badge-checked-in" style="margin-bottom: 12px;">International Accreditation</span>
             <h3>Joint Commission International (JCI) Accredited</h3>
             <p>Gold Seal of Approval® for meeting international healthcare quality standards and patient safety protocols across all departments.</p>
           </div>
           <div class="glass-card">
-            <span class="badge badge-under-review" style="margin-bottom: 12px;">🔒 Security Certification</span>
+            <span class="badge badge-under-review" style="margin-bottom: 12px;">Security Certification</span>
             <h3>HIPAA & GDPR Compliance Certificate</h3>
             <p>Certified 100% compliant with strict healthcare privacy standards, encrypted audit logging, and role-based data isolation.</p>
           </div>
@@ -140,239 +142,322 @@
         <div id="doctors-list" class="grid-2"></div>
       </section>
 
-      <!-- View 04: Consolidated Single Sign In Page with Role Recommendations -->
+      <!-- View 04: Consolidated Single Sign In Page -->
       <section id="view-login" class="view-container" style="display: none;">
-        <div class="login-hub-card" style="max-width: 660px; margin: 20px auto;">
-          <div class="text-center" style="margin-bottom: 20px;">
-            <div class="login-icon-badge">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L3 6v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6l-9-4z" fill="url(#cardShieldGrad)" stroke="#60a5fa" stroke-width="1.2"/>
-                <path d="M7 12h2.5l1.5-3.5 2.5 7 2-4.5H17" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="12" cy="12" r="1.5" fill="#ffffff"/>
-                <defs>
-                  <linearGradient id="cardShieldGrad" x1="3" y1="2" x2="21" y2="22" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#2563eb"/>
-                    <stop offset="1" stop-color="#0284c7"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <h2>Hospital Command Center Sign In</h2>
-            <p style="color: var(--text-muted); font-size: 0.94rem; margin-top: 4px;">Click any role card below for instant account recommendation & autofill:</p>
-          </div>
-
-          <!-- 5 Prominent Interactive Role Recommendation Selection Cards -->
-          <div class="role-recommendation-grid">
-            <div id="role-card-patient" onclick="App.selectRoleQuickLogin('patient')" class="role-select-card active-role">
-              <span class="role-icon">🧑‍🦯</span>
-              <div class="role-title">Patient</div>
-              <div class="role-subtitle">Portal</div>
-            </div>
-            <div id="role-card-receptionist" onclick="App.selectRoleQuickLogin('receptionist')" class="role-select-card">
-              <span class="role-icon">📋</span>
-              <div class="role-title">Receptionist</div>
-              <div class="role-subtitle">Desk</div>
-            </div>
-            <div id="role-card-nurse" onclick="App.selectRoleQuickLogin('nurse')" class="role-select-card">
-              <span class="role-icon">🩺</span>
-              <div class="role-title">Triage Nurse</div>
-              <div class="role-subtitle">Vitals</div>
-            </div>
-            <div id="role-card-doctor" onclick="App.selectRoleQuickLogin('doctor')" class="role-select-card">
-              <span class="role-icon">👨‍⚕️</span>
-              <div class="role-title">Doctor</div>
-              <div class="role-subtitle">Workstation</div>
-            </div>
-            <div id="role-card-admin" onclick="App.selectRoleQuickLogin('admin')" class="role-select-card">
-              <span class="role-icon">🛡️</span>
-              <div class="role-title">Admin</div>
-              <div class="role-subtitle">Command</div>
-            </div>
-          </div>
-
-          <!-- Option 1: Patient Sign In Form -->
-          <div id="login-form-patient">
-            <form onsubmit="event.preventDefault(); var pid = document.getElementById('login-pid').value || 'PID-2026-1001'; AuthEngine.loginPatient(pid); NotificationsEngine.showToast('Signed In', 'Logged in to Patient Portal', 'success'); window.location.hash='#patient-dashboard';">
-              <div class="form-group">
-                <label class="form-label">Patient ID or Registered Email</label>
-                <div class="input-with-icon">
-                  <input type="text" id="login-pid" class="form-input form-input-padded" value="PID-2026-1001" placeholder="Enter Patient ID (e.g. PID-2026-1001)" required>
-                  <span class="input-icon-adornment">🧑‍🦯</span>
+        <div class="scandi-login-wrapper">
+          <!-- Left Lifestyle Hero Panel -->
+          <div class="scandi-login-hero">
+            <div>
+              <div class="scandi-hero-brand">
+                <div class="scandi-hero-emblem">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2C8 6 4 9 4 14a8 8 0 0 0 16 0c0-5-4-8-8-12z"/>
+                  </svg>
                 </div>
+                <span class="scandi-hero-title">POWERED SMART HOSPITAL</span>
               </div>
-              <div class="form-group">
-                <label class="form-label">Password</label>
-                <div class="input-with-icon">
-                  <input type="password" class="form-input form-input-padded" value="password123" placeholder="Enter password" required>
-                  <span class="input-icon-adornment">🔒</span>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 14px;"><span class="btn-icon">🔓</span> Sign In to Patient Companion</button>
-            </form>
-          </div>
 
-          <!-- Option 2: Staff Command Sign In Form -->
-          <div id="login-form-staff" style="display: none;">
-            <form onsubmit="event.preventDefault(); var empId = document.getElementById('login-empid').value; var pass = document.getElementById('login-passcode').value; var res = AuthEngine.loginEmployee(empId, pass); if (res.success) { NotificationsEngine.showToast('Staff Authenticated', 'Logged in as ' + res.employee.role, 'success'); if (res.employee.role==='Receptionist') window.location.hash='#reception-dashboard'; else if (res.employee.role==='Queue Operator / Nurse') window.location.hash='#triage-station'; else if (res.employee.role==='Doctor') window.location.hash='#doctor-dashboard'; else window.location.hash='#admin-dashboard'; } else ModalEngine.alert('Authentication Error', res.message, 'danger');">
-              <div class="form-group">
-                <label class="form-label">Unique Employee ID</label>
-                <div class="input-with-icon">
-                  <input type="text" id="login-empid" class="form-input form-input-padded" value="EMP-REC-01" placeholder="e.g. EMP-REC-01, EMP-NUR-01, EMP-DOC-01, EMP-ADM-01" required>
-                  <span class="input-icon-adornment">💼</span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Security Passcode / Password</label>
-                <div class="input-with-icon">
-                  <input type="password" id="login-passcode" class="form-input form-input-padded" value="pass123" placeholder="Enter employee passcode" required>
-                  <span class="input-icon-adornment">🔑</span>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-purple btn-lg" style="width: 100%; margin-top: 14px;"><span class="btn-icon">⚡</span> Authenticate Staff Command</button>
-            </form>
-          </div>
+              <div class="scandi-hero-body">
+                <h2 class="scandi-hero-headline">Clinical care with quiet elegance.</h2>
+                <p class="scandi-hero-subtext">Access real-time patient queue telemetry, digital triage intake, doctor consultation workflows, and executive hospital command operations.</p>
 
-          <div class="text-center" style="margin-top: 22px;">
-            <p style="font-size: 0.94rem;">Need to create a new account? <a href="#register" style="font-weight: 800; color: var(--accent-blue);">Register Account Here ➜</a></p>
-          </div>
-        </div>
-      </section>
-
-      <!-- View 05: Consolidated Single Registration Page (2 Clear Options) -->
-      <section id="view-register" class="view-container" style="display: none;">
-        <div class="login-hub-card login-card-scroll" style="max-width: 680px; margin: 20px auto; border-color: var(--accent-purple);">
-          <div class="text-center" style="margin-bottom: 24px;">
-            <div class="login-icon-badge" style="background: linear-gradient(135deg, #7c3aed, #2563eb);">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="8.5" cy="7" r="4"/>
-                <line x1="20" y1="8" x2="20" y2="14"/>
-                <line x1="17" y1="11" x2="23" y2="11"/>
-              </svg>
+                <ul class="scandi-hero-features">
+                  <li class="scandi-hero-feature-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Instant OPD Queue & Live Token Tracking</span>
+                  </li>
+                  <li class="scandi-hero-feature-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Automated Role-Based Portal Access</span>
+                  </li>
+                  <li class="scandi-hero-feature-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>HIPAA & GDPR Compliant Security</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <h2>Register New Account</h2>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 4px;">Select your account type to register:</p>
+
+            <div class="scandi-hero-badge">
+              <span>● ISO 27001 Certified Command Network</span>
+            </div>
           </div>
 
-          <!-- 2 Clear Registration Options / Tabs -->
-          <div class="login-tab-container">
-            <button id="reg-tab-btn-patient" onclick="App.switchRegisterTab('patient')" class="btn login-tab-btn active-tab">🧑‍🦯 Patient Sign Up</button>
-            <button id="reg-tab-btn-staff" onclick="App.switchRegisterTab('staff')" class="btn login-tab-btn">💼 Staff Credentials Sign Up</button>
-          </div>
+          <!-- Right Interactive Sign-In Workbench Panel -->
+          <div class="scandi-login-panel">
+            <div class="scandi-panel-header">
+              <h2 class="scandi-panel-title">Sign In to Command Portal</h2>
+              <p class="scandi-panel-subtitle">Select your user role or enter credentials to sign in.</p>
+            </div>
 
-          <!-- Option 1: Patient Sign Up Form -->
-          <div id="reg-form-patient">
-            <form onsubmit="event.preventDefault(); App.handlePatientRegistration();">
-              <div class="grid-2">
+            <!-- Portal Switcher Bar -->
+            <div class="scandi-login-tabs">
+              <button id="tab-btn-patient" onclick="App.switchLoginTab('patient')" class="scandi-tab-btn active-tab">Patient Portal</button>
+              <button id="tab-btn-staff" onclick="App.switchLoginTab('staff')" class="scandi-tab-btn">Staff Command Workbench</button>
+            </div>
+
+            <!-- Option 1: Patient Sign In Form (Dedicated Patient Portal View) -->
+            <div id="login-form-patient">
+              <form onsubmit="event.preventDefault(); var pid = document.getElementById('login-pid').value || 'PID-2026-1001'; AuthEngine.loginPatient(pid); NotificationsEngine.showToast('Signed In', 'Logged in to Patient Portal', 'success'); window.location.hash='#patient-dashboard';">
                 <div class="form-group">
-                  <label class="form-label">Full Patient Name</label>
+                  <label class="form-label">Patient ID or Registered Email</label>
                   <div class="input-with-icon">
-                    <input type="text" id="reg-p-name" class="form-input form-input-padded" placeholder="e.g. Arthur Pendelton" value="Arthur Pendelton" required>
-                    <span class="input-icon-adornment">👤</span>
+                    <input type="text" id="login-pid" class="form-input form-input-padded" value="PID-2026-1001" placeholder="Enter Patient ID (e.g. PID-2026-1001)" required>
+                    <span class="input-icon-adornment">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </span>
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="flex-between" style="margin-bottom: 6px;">
-                    <label class="form-label" style="margin-bottom: 0;">Unique Patient Registration ID</label>
-                    <button type="button" onclick="App.autoGeneratePatientId()" class="btn btn-secondary btn-sm" style="padding: 4px 10px; font-size: 0.76rem;">🎲 Auto-Generate ID</button>
-                  </div>
+                  <label class="form-label">Password</label>
                   <div class="input-with-icon">
-                    <input type="text" id="reg-p-id" class="form-input form-input-padded" value="PID-2026-8419" placeholder="Unique Patient ID" required>
-                    <span class="input-icon-adornment">💳</span>
+                    <input type="password" class="form-input form-input-padded" value="password123" placeholder="Enter password" required>
+                    <span class="input-icon-adornment">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </span>
                   </div>
                 </div>
-              </div>
-              <div class="grid-2">
-                <div class="form-group">
-                  <label class="form-label">Contact Phone Number</label>
-                  <div class="input-with-icon">
-                    <input type="tel" id="reg-p-phone" class="form-input form-input-padded" value="+1 555-0199" required>
-                    <span class="input-icon-adornment">📞</span>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Email Address</label>
-                  <div class="input-with-icon">
-                    <input type="email" id="reg-p-email" class="form-input form-input-padded" value="arthur@example.com" required>
-                    <span class="input-icon-adornment">✉</span>
-                  </div>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-glow btn-lg" style="width: 100%; margin-top: 10px;"><span class="btn-icon">⚡</span> Complete Patient Registration</button>
-            </form>
-          </div>
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 10px;">Sign In to Patient Portal</button>
+              </form>
+            </div>
 
-          <!-- Option 2: Staff Registration Form -->
-          <div id="reg-form-staff" style="display: none;">
-            <form onsubmit="event.preventDefault(); App.handleStaffRegistration();">
-              <div class="grid-2">
-                <div class="form-group">
-                  <label class="form-label">Full Employee Name</label>
-                  <div class="input-with-icon">
-                    <input type="text" id="reg-name" class="form-input form-input-padded" placeholder="e.g. Dr. Alex Vance" required>
-                    <span class="input-icon-adornment">👨‍⚕️</span>
+            <!-- Option 2: Staff Command Sign In Form (Includes Staff Role Buttons) -->
+            <div id="login-form-staff" style="display: none;">
+              <!-- Interactive Staff Duty Role Selection Tiles -->
+              <div class="scandi-role-selector">
+                <span class="scandi-role-label">Select Staff Duty Role</span>
+                <div class="scandi-role-grid" style="grid-template-columns: repeat(4, 1fr);">
+                  <div id="role-card-receptionist" onclick="App.selectRoleQuickLogin('receptionist')" class="scandi-role-tile active-role">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <span class="scandi-role-tile-name">Reception</span>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Hospital Staff Role</label>
-                  <select id="reg-role" class="form-select" onchange="App.onStaffRoleChange()" required>
-                    <option value="Receptionist">Receptionist (Central Front Desk)</option>
-                    <option value="Queue Operator / Nurse" selected>Triage Nurse (Clinical Triage)</option>
-                    <option value="Doctor">Doctor Workstation (Consultant)</option>
-                    <option value="Administrator">Administrator (System Control)</option>
-                  </select>
+                  <div id="role-card-nurse" onclick="App.selectRoleQuickLogin('nurse')" class="scandi-role-tile">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    <span class="scandi-role-tile-name">Triage Nurse</span>
+                  </div>
+                  <div id="role-card-doctor" onclick="App.selectRoleQuickLogin('doctor')" class="scandi-role-tile">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4.8 2.3A.3.3 0 0 0 5 2h14a.3.3 0 0 0 .2.3l-2.5 5a.3.3 0 0 0 0 .4l2.5 5a.3.3 0 0 0-.2.3H5a.3.3 0 0 0-.2-.3l2.5-5a.3.3 0 0 0 0-.4L4.8 2.3z"/></svg>
+                    <span class="scandi-role-tile-name">Doctor</span>
+                  </div>
+                  <div id="role-card-admin" onclick="App.selectRoleQuickLogin('admin')" class="scandi-role-tile">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span class="scandi-role-tile-name">Admin</span>
+                  </div>
                 </div>
               </div>
 
-              <div class="grid-2">
+              <form onsubmit="event.preventDefault(); var empId = document.getElementById('login-empid').value; var pass = document.getElementById('login-passcode').value; var res = AuthEngine.loginEmployee(empId, pass); if (res.success) { NotificationsEngine.showToast('Staff Authenticated', 'Logged in as ' + res.employee.role, 'success'); if (res.employee.role==='Receptionist') window.location.hash='#reception-dashboard'; else if (res.employee.role==='Queue Operator / Nurse') window.location.hash='#triage-station'; else if (res.employee.role==='Doctor') window.location.hash='#doctor-dashboard'; else window.location.hash='#admin-dashboard'; } else ModalEngine.alert('Authentication Error', res.message, 'danger');">
                 <div class="form-group">
-                  <div class="flex-between" style="margin-bottom: 6px;">
-                    <label class="form-label" style="margin-bottom: 0;">Unique Employee Badge ID</label>
-                    <button type="button" onclick="App.autoGenerateStaffId()" class="btn btn-secondary btn-sm" style="padding: 4px 10px; font-size: 0.76rem;">🎲 Auto-Generate ID</button>
-                  </div>
+                  <label class="form-label">Unique Employee ID</label>
                   <div class="input-with-icon">
-                    <input type="text" id="reg-empid" class="form-input form-input-padded" placeholder="Unique Employee ID" value="EMP-NUR-3891" required>
-                    <span class="input-icon-adornment">🆔</span>
+                    <input type="text" id="login-empid" class="form-input form-input-padded" value="EMP-REC-01" placeholder="e.g. EMP-REC-01, EMP-NUR-01, EMP-DOC-01, EMP-ADM-01" required>
+                    <span class="input-icon-adornment">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    </span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="form-label">Security Passcode / Password</label>
                   <div class="input-with-icon">
-                    <input type="password" id="reg-passcode" class="form-input form-input-padded" placeholder="Create security passcode" value="pass123" required>
-                    <span class="input-icon-adornment">🔑</span>
+                    <input type="password" id="login-passcode" class="form-input form-input-padded" value="pass123" placeholder="Enter employee passcode" required>
+                    <span class="input-icon-adornment">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </span>
                   </div>
                 </div>
+                <button type="submit" class="btn btn-purple btn-lg" style="width: 100%; margin-top: 10px;">Authenticate Staff Command</button>
+              </form>
+            </div>
+
+            <div class="text-center" style="margin-top: 22px;">
+              <p style="font-size: 0.88rem; color: var(--text-muted);">New to Powered Smart Hospital? <a href="#register" style="font-weight: 700; color: var(--accent-sage);">Register Account Here ➜</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- View 05: Consolidated Single Registration Page -->
+      <section id="view-register" class="view-container" style="display: none;">
+        <div class="scandi-login-wrapper">
+          <!-- Left Lifestyle Hero Panel -->
+          <div class="scandi-login-hero">
+            <div>
+              <div class="scandi-hero-brand">
+                <div class="scandi-hero-emblem">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2C8 6 4 9 4 14a8 8 0 0 0 16 0c0-5-4-8-8-12z"/>
+                  </svg>
+                </div>
+                <span class="scandi-hero-title">POWERED SMART HOSPITAL</span>
               </div>
 
-              <div id="reg-dept-container" class="form-group" style="margin-bottom: 22px;">
-                <label class="form-label" id="reg-dept-label">Assigned Department <span style="color:var(--accent-blue); font-weight:normal;">(Required for Triage Nurse & Doctor)</span></label>
-                <select id="reg-dept" class="form-select">
-                  <option value="dept_card">Cardiology (Heart & Vascular) - Block A, Floor 3</option>
-                  <option value="dept_neur">Neurology (Brain & Spine) - Block B, Floor 4</option>
-                  <option value="dept_orth">Orthopedics (Bone & Joint) - Block A, Floor 2</option>
-                  <option value="dept_peds">Pediatrics (Child Health) - Block C, Floor 1</option>
-                  <option value="dept_onc">Oncology (Cancer Care) - Block D, Floor 5</option>
-                  <option value="dept_gastro">Gastroenterology (Digestive Health) - Block B, Floor 2</option>
-                  <option value="dept_derm">Dermatology (Skin & Allergy) - Block A, Floor 1</option>
-                  <option value="dept_opht">Ophthalmology (Eye Care) - Block B, Floor 3</option>
-                  <option value="dept_pulm">Pulmonology (Respiratory Medicine) - Block A, Floor 4</option>
-                  <option value="dept_ent">ENT (Ear, Nose & Throat) - Block B, Floor 1</option>
-                  <option value="dept_neph">Nephrology & Dialysis - Block C, Floor 3</option>
-                  <option value="dept_genm">General Medicine & OPD - Block A, Ground Floor</option>
-                </select>
-                <small id="reg-dept-help" style="display:none; color:var(--text-muted); font-size:0.84rem; margin-top:4px;">Receptionist and Administrator roles operate hospital-wide / central reception desk.</small>
-              </div>
+              <div class="scandi-hero-body">
+                <h2 class="scandi-hero-headline">Join our digital clinical network.</h2>
+                <p class="scandi-hero-subtext">Register as a patient for instant OPD booking & token tracking, or issue staff credentials for clinical command operations.</p>
 
-              <div id="reg-role-fields" class="grid-2" style="background: #f8fafc; padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 22px;">
-                <!-- Dynamically Populated by App.onStaffRoleChange() -->
+                <ul class="scandi-hero-features">
+                  <li class="scandi-hero-feature-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Instant Unique Registration ID</span>
+                  </li>
+                  <li class="scandi-hero-feature-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Role-Based Triage & Roster Controls</span>
+                  </li>
+                  <li class="scandi-hero-feature-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Encrypted Audit Logging & Security</span>
+                  </li>
+                </ul>
               </div>
+            </div>
 
-              <button type="submit" class="btn btn-purple btn-lg" style="width: 100%;"><span class="btn-icon">⚡</span> Issue Staff Credentials & Register</button>
-            </form>
+            <div class="scandi-hero-badge">
+              <span>● Encrypted Registration Portal</span>
+            </div>
           </div>
 
-          <div class="text-center" style="margin-top: 24px;">
-            <p style="font-size: 0.92rem;">Already registered? <a href="#login" style="font-weight: 800; color: var(--accent-blue);">Sign In Here ➜</a></p>
+          <!-- Right Interactive Registration Workbench Panel -->
+          <div class="scandi-login-panel login-card-scroll">
+            <div class="scandi-panel-header">
+              <h2 class="scandi-panel-title">Register New Account</h2>
+              <p class="scandi-panel-subtitle">Select your account type to register:</p>
+            </div>
+
+            <!-- 2 Clear Registration Options / Tabs -->
+            <div class="scandi-login-tabs">
+              <button id="reg-tab-btn-patient" onclick="App.switchRegisterTab('patient')" class="scandi-tab-btn active-tab">Patient Sign Up</button>
+              <button id="reg-tab-btn-staff" onclick="App.switchRegisterTab('staff')" class="scandi-tab-btn">Staff Credentials Sign Up</button>
+            </div>
+
+            <!-- Option 1: Patient Sign Up Form -->
+            <div id="reg-form-patient">
+              <form onsubmit="event.preventDefault(); App.handlePatientRegistration();">
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label class="form-label">Full Patient Name</label>
+                    <div class="input-with-icon">
+                      <input type="text" id="reg-p-name" class="form-input form-input-padded" placeholder="e.g. Arthur Pendelton" value="Arthur Pendelton" required>
+                      <span class="input-icon-adornment">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="flex-between" style="margin-bottom: 6px;">
+                      <label class="form-label" style="margin-bottom: 0;">Unique Patient ID</label>
+                      <button type="button" onclick="App.autoGeneratePatientId()" class="btn btn-secondary btn-sm" style="padding: 3px 8px; font-size: 0.74rem;">Auto-Generate</button>
+                    </div>
+                    <div class="input-with-icon">
+                      <input type="text" id="reg-p-id" class="form-input form-input-padded" value="PID-2026-8419" placeholder="Unique Patient ID" required>
+                      <span class="input-icon-adornment">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="7" y1="8" x2="17" y2="8"/></svg>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label class="form-label">Contact Phone Number</label>
+                    <div class="input-with-icon">
+                      <input type="tel" id="reg-p-phone" class="form-input form-input-padded" value="+1 555-0199" required>
+                      <span class="input-icon-adornment">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <div class="input-with-icon">
+                      <input type="email" id="reg-p-email" class="form-input form-input-padded" value="arthur@example.com" required>
+                      <span class="input-icon-adornment">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 10px;">Complete Patient Registration</button>
+              </form>
+            </div>
+
+            <!-- Option 2: Staff Registration Form -->
+            <div id="reg-form-staff" style="display: none;">
+              <form onsubmit="event.preventDefault(); App.handleStaffRegistration();">
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label class="form-label">Full Employee Name</label>
+                    <div class="input-with-icon">
+                      <input type="text" id="reg-name" class="form-input form-input-padded" placeholder="e.g. Dr. Alex Vance" required>
+                      <span class="input-icon-adornment">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Hospital Staff Role</label>
+                    <select id="reg-role" class="form-select" onchange="App.onStaffRoleChange()" required>
+                      <option value="Receptionist">Receptionist (Central Front Desk)</option>
+                      <option value="Queue Operator / Nurse" selected>Triage Nurse (Clinical Triage)</option>
+                      <option value="Doctor">Doctor Workstation (Consultant)</option>
+                      <option value="Administrator">Administrator (System Control)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid-2">
+                  <div class="form-group">
+                    <div class="flex-between" style="margin-bottom: 6px;">
+                      <label class="form-label" style="margin-bottom: 0;">Unique Employee Badge ID</label>
+                      <button type="button" onclick="App.autoGenerateStaffId()" class="btn btn-secondary btn-sm" style="padding: 3px 8px; font-size: 0.74rem;">Auto-Generate</button>
+                    </div>
+                    <div class="input-with-icon">
+                      <input type="text" id="reg-empid" class="form-input form-input-padded" placeholder="Unique Employee ID" value="EMP-NUR-3891" required>
+                      <span class="input-icon-adornment">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="7" y1="8" x2="17" y2="8"/></svg>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Security Passcode / Password</label>
+                    <div class="input-with-icon">
+                      <input type="password" id="reg-passcode" class="form-input form-input-padded" placeholder="Create security passcode" value="pass123" required>
+                      <span class="input-icon-adornment">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="reg-dept-container" class="form-group" style="margin-bottom: 20px;">
+                  <label class="form-label" id="reg-dept-label">Assigned Department <span style="color:var(--accent-sage); font-weight:normal;">(Required for Triage Nurse & Doctor)</span></label>
+                  <select id="reg-dept" class="form-select">
+                    <option value="dept_card">Cardiology (Heart & Vascular) - Block A, Floor 3</option>
+                    <option value="dept_neur">Neurology (Brain & Spine) - Block B, Floor 4</option>
+                    <option value="dept_orth">Orthopedics (Bone & Joint) - Block A, Floor 2</option>
+                    <option value="dept_peds">Pediatrics (Child Health) - Block C, Floor 1</option>
+                    <option value="dept_onc">Oncology (Cancer Care) - Block D, Floor 5</option>
+                    <option value="dept_gastro">Gastroenterology (Digestive Health) - Block B, Floor 2</option>
+                    <option value="dept_derm">Dermatology (Skin & Allergy) - Block A, Floor 1</option>
+                    <option value="dept_opht">Ophthalmology (Eye Care) - Block B, Floor 3</option>
+                    <option value="dept_pulm">Pulmonology (Respiratory Medicine) - Block A, Floor 4</option>
+                    <option value="dept_ent">ENT (Ear, Nose & Throat) - Block B, Floor 1</option>
+                    <option value="dept_neph">Nephrology & Dialysis - Block C, Floor 3</option>
+                    <option value="dept_genm">General Medicine & OPD - Block A, Ground Floor</option>
+                  </select>
+                  <small id="reg-dept-help" style="display:none; color:var(--text-muted); font-size:0.84rem; margin-top:4px;">Receptionist and Administrator roles operate hospital-wide.</small>
+                </div>
+
+                <div id="reg-role-fields" class="grid-2" style="background: var(--bg-surface); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 20px;">
+                  <!-- Dynamically Populated by App.onStaffRoleChange() -->
+                </div>
+
+                <button type="submit" class="btn btn-purple btn-lg" style="width: 100%;">Issue Staff Credentials & Register</button>
+              </form>
+            </div>
+
+            <div class="text-center" style="margin-top: 22px;">
+              <p style="font-size: 0.88rem; color: var(--text-muted);">Already registered? <a href="#login" style="font-weight: 700; color: var(--accent-sage);">Sign In Here ➜</a></p>
+            </div>
           </div>
         </div>
       </section>
@@ -381,14 +466,17 @@
       <section id="view-patient-dashboard" class="view-container" style="display: none;">
         <div class="glass-card flex-between" style="margin-bottom: 28px;">
           <div>
-            <h1>Patient Health Companion Portal</h1>
+            <h1>Patient Portal</h1>
             <p>Manage appointments, check-in, track live tokens & download visit summaries.</p>
           </div>
-          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <a href="#request-appointment" class="btn btn-primary"><span class="btn-icon">📅</span> Book Appointment</a>
-            <a href="#live-queue" class="btn btn-cyan"><span class="btn-icon">🔢</span> Live Queue Token</a>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="#request-appointment" class="btn btn-primary">Book Appointment</a>
+            <a href="#live-queue" class="btn btn-cyan">Live Queue Token</a>
           </div>
         </div>
+
+        <!-- Signature Feature 2: Smart Patient Route Navigator -->
+        <div id="patient-route-container"></div>
 
         <h2 style="margin-bottom: 20px;">My Active Appointments</h2>
         <div id="patient-apts-list"></div>
@@ -426,7 +514,7 @@
               <label class="form-label">Reason for Visit & Symptoms</label>
               <textarea id="req-reason" class="form-textarea" rows="3" placeholder="Describe symptoms..." required>Routine cardiology evaluation</textarea>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;"><span class="btn-icon">✉</span> Submit Appointment Request</button>
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Submit Appointment Request</button>
           </form>
         </div>
       </section>
@@ -447,35 +535,29 @@
             <h1>Reception Operations Desk</h1>
             <p>Review requests, approve/reject, allocate slots, issue walk-in OPD tokens & launch public TV.</p>
           </div>
-          <div style="display:flex; gap:12px;">
-            <button onclick="App.issueWalkInOpdToken()" class="btn btn-glow"><span class="btn-icon">🎟</span> Issue Walk-In Token</button>
-            <a href="#public-tv" class="btn btn-purple"><span class="btn-icon">📺</span> Launch Public TV</a>
+          <div style="display:flex; gap:10px;">
+            <button onclick="App.issueWalkInOpdToken()" class="btn btn-glow">Issue Walk-In Token</button>
+            <a href="#public-tv" class="btn btn-purple">Launch Public TV</a>
           </div>
         </div>
+
+        <!-- Signature Feature 4: AI Queue Balancer -->
+        <div id="reception-queue-balancer-container"></div>
+
         <h2 style="margin-bottom: 20px;">Pending Appointment Requests</h2>
         <div id="reception-req-list"></div>
       </section>
 
-      <!-- View 10: Triage Nurse Vitals Station -->
+      <!-- View 10: Triage Nurse Vitals Station (Cleaned & Simplified as requested) -->
       <section id="view-triage-station" class="view-container" style="display: none;">
-        <div class="glass-card" style="max-width: 680px; margin: 0 auto;">
+        <div class="glass-card" style="max-width: 640px; margin: 0 auto;">
           <h2>Triage Nurse & Vitals Station</h2>
-          <p>Record clinical vitals telemetry, assign severity rating & authorize emergency priority queue boost.</p>
+          <p>Record clinical vitals telemetry for patient queue intake.</p>
           <br/>
-          <form onsubmit="event.preventDefault(); TriageEngine.recordTriage({patientId: 'PID-2026-1001', bp: document.getElementById('tr-bp').value, pulse: document.getElementById('tr-pulse').value, spO2: document.getElementById('tr-spo2').value, temp: document.getElementById('tr-temp').value, severity: document.getElementById('tr-sev').value, authorizedPriority: document.getElementById('tr-prio').value}); ModalEngine.alert('Triage Telemetry Recorded', 'Vitals logged & queue priority updated!', 'success', function(){ window.location.hash='#reception-dashboard'; });">
-            <div class="grid-2">
-              <div class="form-group">
-                <label class="form-label">Patient ID</label>
-                <input type="text" class="form-input" value="PID-2026-1001" readonly>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Assigned Triage Bay</label>
-                <select class="form-select">
-                  <option value="Bay Alpha (Main OPD)">Bay Alpha (Main OPD)</option>
-                  <option value="Bay Beta (Emergency Intake)">Bay Beta (Emergency Intake)</option>
-                  <option value="Resuscitation Room 1">Resuscitation Room 1</option>
-                </select>
-              </div>
+          <form onsubmit="event.preventDefault(); TriageEngine.recordTriage({patientId: 'PID-2026-1001', bp: document.getElementById('tr-bp').value, pulse: document.getElementById('tr-pulse').value, spO2: document.getElementById('tr-spo2').value, temp: document.getElementById('tr-temp').value}); ModalEngine.alert('Triage Telemetry Recorded', 'Vitals logged successfully!', 'success', function(){ window.location.hash='#reception-dashboard'; });">
+            <div class="form-group">
+              <label class="form-label">Patient ID</label>
+              <input type="text" class="form-input" value="PID-2026-1001" readonly>
             </div>
             <div class="grid-2">
               <div class="form-group">
@@ -497,25 +579,7 @@
                 <input type="text" id="tr-temp" class="form-input" value="98.6°F" required>
               </div>
             </div>
-            <div class="grid-2">
-              <div class="form-group">
-                <label class="form-label">Clinical Severity Assessment</label>
-                <select id="tr-sev" class="form-select">
-                  <option value="STANDARD">Standard OPD Visit</option>
-                  <option value="URGENT">Urgent Care Required</option>
-                  <option value="EMERGENCY">Emergency Triage</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Staff-Authorized Queue Priority</label>
-                <select id="tr-prio" class="form-select">
-                  <option value="STANDARD">Standard Priority</option>
-                  <option value="PRIORITY_ASSIST">Priority Assist (Elderly/Pediatric)</option>
-                  <option value="EMERGENCY">Emergency Bypass (Immediate Call)</option>
-                </select>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-success btn-lg" style="width:100%;"><span class="btn-icon">⚡</span> Authorize Priority & Admit to Queue</button>
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%; margin-top:8px;">Record Vitals & Update Queue</button>
           </form>
         </div>
       </section>
@@ -523,8 +587,8 @@
       <!-- View 11: Doctor Clinical Workstation -->
       <section id="view-doctor-dashboard" class="view-container" style="display: none;">
         <div class="glass-card" style="margin-bottom: 28px;">
-          <h1>Doctor Clinical Workstation</h1>
-          <p>Trigger voice token calls (Speech Synthesis + Audio Chime), review vitals, log EHR notes, and complete visits.</p>
+          <h1>Doctor Workstation</h1>
+          <p>Trigger voice token calls, review vitals, log EHR notes, and complete visits.</p>
         </div>
         <div id="doctor-current-token" style="margin-bottom: 32px;"></div>
         <h2 style="margin-bottom: 20px;">Today's Waiting Queue</h2>
@@ -535,40 +599,55 @@
       <section id="view-admin-dashboard" class="view-container" style="display: none;">
         <div class="glass-card flex-between" style="margin-bottom: 28px;">
           <div>
-            <h1>Hospital Executive Command Center</h1>
+            <h1>Executive Command Center</h1>
             <p>Facility throughput telemetry, staff roster controls, department allocation, and data governance.</p>
           </div>
-          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <a href="#register" class="btn btn-purple"><span class="btn-icon">➕</span> Register New Staff</a>
-            <a href="#reports-audit" class="btn btn-secondary"><span class="btn-icon">📜</span> Audit Logs</a>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="#register-staff" class="btn btn-purple">Register Staff</a>
+            <a href="#reports-audit" class="btn btn-secondary">Audit Logs</a>
           </div>
         </div>
 
         <div id="admin-stats" style="margin-bottom: 28px;"></div>
 
+        <!-- Signature Feature 4: AI Queue Balancer Widget -->
+        <div id="admin-queue-balancer-container" style="margin-bottom: 28px;"></div>
+
+        <!-- Signature Feature 1: Hospital Flow Radar Live Map -->
+        <div class="glass-card" style="margin-bottom: 28px; padding: 28px;">
+          <div class="flex-between" style="margin-bottom: 20px;">
+            <div>
+              <h3 style="margin: 0;">📡 Hospital Flow Radar — Live Telemetry Grid</h3>
+              <p style="color: var(--text-muted); font-size: 0.86rem; margin-top: 4px;">Live facility-wide congestion, doctor availability & emergency priority telemetry.</p>
+            </div>
+            <span class="badge badge-submitted">Live Active</span>
+          </div>
+          <div id="admin-flow-radar-container"></div>
+        </div>
+
         <!-- Dedicated Administrator Operations Control Grid -->
         <h2 style="margin-bottom: 20px;">Administrator Executive Controls</h2>
         <div class="grid-3" style="margin-bottom: 28px;">
           <div class="glass-card">
-            <h3>👥 Staff & Doctor Roster Management</h3>
+            <h3>Staff & Doctor Roster</h3>
             <p>Issue staff credentials, set experience levels, and assign doctors to consultation rooms.</p>
             <br/>
-            <a href="#register" class="btn btn-glow btn-sm"><span class="btn-icon">📝</span> Issue Credentials</a>
-            <a href="#doctor-directory" class="btn btn-secondary btn-sm" style="margin-left: 8px;"><span class="btn-icon">🔍</span> Doctor Roster</a>
+            <a href="#register-staff" class="btn btn-glow btn-sm">Issue Credentials</a>
+            <a href="#doctor-directory" class="btn btn-secondary btn-sm" style="margin-left: 8px;">Doctor Roster</a>
           </div>
 
           <div class="glass-card">
-            <h3>🏥 Clinical Department Configurations</h3>
+            <h3>Department Setup</h3>
             <p>Configure OPD units, diagnostic labs, emergency intake wings, and consult rooms.</p>
             <br/>
-            <a href="#departments" class="btn btn-glow btn-sm"><span class="btn-icon">🏛</span> View Departments</a>
+            <a href="#departments" class="btn btn-glow btn-sm">View Departments</a>
           </div>
 
           <div class="glass-card">
-            <h3>🔒 Security Compliance & System Reset</h3>
+            <h3>Security & Reset</h3>
             <p>Monitor HIPAA activity logs or perform factory resets on prototype demo datasets.</p>
             <br/>
-            <button onclick="App.resetAllDemoData()" class="btn btn-danger btn-sm"><span class="btn-icon">⚠</span> Reset Demo Data</button>
+            <button onclick="App.resetAllDemoData()" class="btn btn-danger btn-sm">Reset Demo Data</button>
           </div>
         </div>
       </section>
@@ -596,13 +675,13 @@
 
       <!-- View 14: Public Waiting Room TV Board -->
       <section id="view-public-tv" class="view-container" style="display: none;">
-        <div style="background: #ffffff; color: #0f172a; padding: 36px; border-radius: var(--radius-lg); border: 2px solid var(--accent-blue); box-shadow: var(--glass-shadow);">
-          <div class="flex-between" style="border-bottom: 2px solid #e2e8f0; padding-bottom: 24px; margin-bottom: 36px;">
+        <div class="glass-card" style="padding: 32px;">
+          <div class="flex-between" style="border-bottom: 1px solid var(--border-color); padding-bottom: 20px; margin-bottom: 28px;">
             <div>
-              <h2 style="color: #0f172a; font-size: 2rem;">PUBLIC WAITING ROOM DISPLAY</h2>
-              <p style="color: #64748b; margin-top: 4px;">Anonymized Token Numbers & Room Assignments</p>
+              <h2>PUBLIC WAITING ROOM DISPLAY</h2>
+              <p style="color: var(--text-muted); margin-top: 4px;">Anonymized Token Numbers & Room Assignments</p>
             </div>
-            <button onclick="NotificationsEngine.playChime()" class="btn btn-glow btn-sm"><span class="btn-icon">🔔</span> Test Audio Chime</button>
+            <button onclick="NotificationsEngine.playChime()" class="btn btn-glow btn-sm">Test Audio Chime</button>
           </div>
           <div id="public-tv-grid" class="grid-4"></div>
         </div>
@@ -610,68 +689,68 @@
 
       <!-- View 15: Clinical Analytics & Executive Queue Metrics Dashboard -->
       <section id="view-analytics-dashboard" class="view-container" style="display: none;">
-        <div class="glass-card flex-between" style="margin-bottom: 24px; padding: 24px 32px; align-items: center;">
+        <div class="glass-card flex-between" style="margin-bottom: 24px; padding: 22px 28px; align-items: center;">
           <div>
-            <h1 style="margin-bottom: 4px;">📊 Clinical Analytics & Queue Command Dashboard</h1>
+            <h1 style="margin-bottom: 4px;">Clinical Analytics & Queue Dashboard</h1>
             <p style="color: var(--text-muted); margin: 0;">Real-time throughput, wait-time performance, department load, and weekly queue trends.</p>
           </div>
-          <div class="flex-between" style="gap: 12px;">
-            <button onclick="App.refreshAnalyticsDashboard()" class="btn btn-secondary btn-sm"><span class="btn-icon">🔄</span> Refresh Analytics</button>
-            <span class="badge badge-checked-in">● Live Staff Telemetry</span>
+          <div class="flex-between" style="gap: 10px;">
+            <button onclick="App.refreshAnalyticsDashboard()" class="btn btn-secondary btn-sm">Refresh Analytics</button>
+            <span class="badge badge-checked-in">Live Staff Telemetry</span>
           </div>
         </div>
 
-        <!-- KPI Metrics Cards Row (Matching Prototype Layout) -->
+        <!-- KPI Metrics Cards Row -->
         <div class="grid-4" style="margin-bottom: 24px; gap: 16px;">
           <!-- Card 1: Today's Appointments -->
-          <div class="analytics-kpi-card" style="border-left: 5px solid #2563eb;">
+          <div class="analytics-kpi-card" style="border-top: 4px solid var(--accent-sage);">
             <div class="kpi-title">Today's Appointments</div>
-            <div class="kpi-val" style="color: #2563eb;" id="kpi-today-appointments">184</div>
+            <div class="kpi-val" style="color: var(--accent-sage);" id="kpi-today-appointments">184</div>
             <div class="kpi-sub">Total visits scheduled & accepted</div>
           </div>
 
           <!-- Card 2: Patients in Queue -->
-          <div class="analytics-kpi-card" style="border-left: 5px solid #d97706;">
+          <div class="analytics-kpi-card" style="border-top: 4px solid var(--accent-amber);">
             <div class="kpi-title">Patients in Queue</div>
-            <div class="kpi-val" style="color: #d97706;" id="kpi-queue-count">23</div>
+            <div class="kpi-val" style="color: var(--accent-amber);" id="kpi-queue-count">23</div>
             <div class="kpi-sub">Active waiting tokens across OPD</div>
           </div>
 
           <!-- Card 3: Avg. Wait Time -->
-          <div class="analytics-kpi-card" style="border-left: 5px solid #059669;">
+          <div class="analytics-kpi-card" style="border-top: 4px solid var(--accent-teal);">
             <div class="kpi-title">Avg. Wait Time</div>
-            <div class="kpi-val" style="color: #059669;" id="kpi-avg-wait">14 min</div>
+            <div class="kpi-val" style="color: var(--accent-teal);" id="kpi-avg-wait">14 min</div>
             <div class="kpi-sub">Average queue throughput speed</div>
           </div>
 
           <!-- Card 4: Doctors Active -->
-          <div class="analytics-kpi-card" style="border-left: 5px solid #7c3aed;">
+          <div class="analytics-kpi-card" style="border-top: 4px solid var(--accent-olive);">
             <div class="kpi-title">Doctors Active</div>
-            <div class="kpi-val" style="color: #7c3aed;" id="kpi-active-doctors">12</div>
+            <div class="kpi-val" style="color: var(--accent-olive);" id="kpi-active-doctors">12</div>
             <div class="kpi-sub">Physicians currently consulting</div>
           </div>
         </div>
 
-        <!-- 2 Main Charts Grid (Matching Prototype Layout) -->
+        <!-- 2 Main Charts Grid -->
         <div class="grid-2" style="margin-bottom: 24px; gap: 24px;">
           <!-- Bar Chart Card: Appointments by Department -->
           <div class="glass-card chart-card">
-            <h3 style="color: #7c3aed; margin-bottom: 20px; font-size: 1.25rem;">Appointments by Department</h3>
-            <div id="chart-dept-bar-container" style="width: 100%; min-height: 320px;"></div>
+            <h3 style="color: var(--accent-sage); margin-bottom: 18px;">Appointments by Department</h3>
+            <div id="chart-dept-bar-container" style="width: 100%; min-height: 300px;"></div>
           </div>
 
           <!-- Line Chart Card: Weekly Average Queue Length -->
           <div class="glass-card chart-card">
-            <h3 style="color: #7c3aed; margin-bottom: 20px; font-size: 1.25rem;">Weekly Average Queue Length</h3>
-            <div id="chart-weekly-line-container" style="width: 100%; min-height: 320px;"></div>
+            <h3 style="color: var(--accent-sage); margin-bottom: 18px;">Weekly Average Queue Length</h3>
+            <div id="chart-weekly-line-container" style="width: 100%; min-height: 300px;"></div>
           </div>
         </div>
 
         <!-- Additional Hourly OPD Load Heatmap Card -->
-        <div class="glass-card" style="padding: 28px;">
-          <div class="flex-between" style="margin-bottom: 20px;">
-            <h3 style="color: #0f172a; margin: 0; font-size: 1.2rem;">Hourly Patient Arrival & Queue Load Heatmap</h3>
-            <span style="font-size: 0.85rem; font-weight: 700; color: #64748b;">OPD Operating Hours: 08:00 AM - 08:00 PM</span>
+        <div class="glass-card" style="padding: 24px;">
+          <div class="flex-between" style="margin-bottom: 18px;">
+            <h3 style="margin: 0;">Hourly Patient Arrival & Queue Load Heatmap</h3>
+            <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted);">OPD Operating Hours: 08:00 AM - 08:00 PM</span>
           </div>
           <div id="hourly-heatmap-container"></div>
         </div>
@@ -690,6 +769,7 @@
   <script src="js/queue.js"></script>
   <script src="js/clinical.js"></script>
   <script src="js/charts.js"></script>
+  <script src="js/ai-engine.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

@@ -27,7 +27,7 @@
     },
 
     selectRoleQuickLogin: function(roleKey) {
-      var cards = document.querySelectorAll('.role-select-card');
+      var cards = document.querySelectorAll('.role-select-card, .scandi-role-tile');
       cards.forEach(function(c) { c.classList.remove('active-role'); });
 
       var targetCard = document.getElementById('role-card-' + roleKey);
@@ -62,13 +62,22 @@
       if (tab === 'patient') {
         if (pForm) pForm.style.display = 'block';
         if (sForm) sForm.style.display = 'none';
-        if (pTab) pTab.className = 'btn login-tab-btn active-tab';
-        if (sTab) sTab.className = 'btn login-tab-btn';
+        if (pTab) pTab.className = 'scandi-tab-btn active-tab';
+        if (sTab) sTab.className = 'scandi-tab-btn';
       } else {
         if (pForm) pForm.style.display = 'none';
         if (sForm) sForm.style.display = 'block';
-        if (pTab) pTab.className = 'btn login-tab-btn';
-        if (sTab) sTab.className = 'btn login-tab-btn active-tab-purple';
+        if (pTab) pTab.className = 'scandi-tab-btn';
+        if (sTab) sTab.className = 'scandi-tab-btn active-tab';
+
+        // Auto-select first staff role if none selected yet
+        var activeStaffTile = document.querySelector('#login-form-staff .scandi-role-tile.active-role');
+        if (!activeStaffTile) {
+          var targetCard = document.getElementById('role-card-receptionist');
+          if (targetCard) targetCard.classList.add('active-role');
+          var empInput = document.getElementById('login-empid');
+          if (empInput) empInput.value = 'EMP-REC-01';
+        }
       }
     },
 
@@ -305,7 +314,18 @@
     },
 
     handleHashChange: function() {
-      var hash = window.location.hash.replace('#', '') || 'home';
+      var rawHash = window.location.hash.replace('#', '') || 'home';
+      var hash = rawHash;
+      var subTab = null;
+
+      if (rawHash === 'register-staff' || rawHash === 'register-patient') {
+        hash = 'register';
+        subTab = (rawHash === 'register-staff') ? 'staff' : 'patient';
+      } else if (rawHash === 'login-staff' || rawHash === 'login-patient') {
+        hash = 'login';
+        subTab = (rawHash === 'login-staff') ? 'staff' : 'patient';
+      }
+
       var viewId = 'view-' + hash;
 
       // Validate RBAC Route Access
@@ -313,7 +333,7 @@
         var currentRole = global.AuthEngine.getCurrentRole();
         if (!global.AuthEngine.canAccessRoute(viewId, currentRole)) {
           if (global.NotificationsEngine) {
-            global.NotificationsEngine.add('System', 'SYS', 'Access Restricted', 'Please sign in with valid credentials to access portal section #' + hash, 'warning');
+            global.NotificationsEngine.add('System', 'SYS', 'Access Restricted', 'Please sign in with valid credentials to access portal section #' + rawHash, 'warning');
           }
           window.location.hash = '#login-patient';
           return;
@@ -321,6 +341,12 @@
       }
 
       this.switchView(viewId);
+
+      if (hash === 'register') {
+        this.switchRegisterTab(subTab || 'patient');
+      } else if (hash === 'login' && subTab) {
+        this.switchLoginTab(subTab);
+      }
     },
 
     switchView: function(viewId) {
@@ -359,19 +385,23 @@
       var roleTag = document.getElementById('header-user-role');
       var authBtn = document.getElementById('auth-btn');
 
-      if (roleTag) roleTag.textContent = isAuth ? currentRole : 'Guest';
+      var displayRole = isAuth ? currentRole : 'Guest';
+      if (displayRole === 'Queue Operator / Nurse') displayRole = 'Triage Nurse';
+      if (displayRole === 'Administrator') displayRole = 'Admin';
+
+      if (roleTag) roleTag.textContent = displayRole;
 
       if (authBtn) {
         if (isAuth) {
           authBtn.className = 'btn btn-danger btn-sm';
-          authBtn.innerHTML = '<span class="btn-icon">🔒</span> Logout';
+          authBtn.innerHTML = 'Logout';
         } else {
           authBtn.className = 'btn btn-primary btn-sm';
-          authBtn.innerHTML = '<span class="btn-icon">🔑</span> Sign In';
+          authBtn.innerHTML = 'Sign In';
         }
       }
 
-      // Render Dynamic Role-Specific Nav Links (Clean, Uncluttered)
+      // Render Dynamic Role-Specific Nav Links (Clean & Concise)
       var navContainer = document.getElementById('main-nav-links');
       if (navContainer) {
         var linksHtml = '<li><a href="#home" class="nav-link">Home</a></li>';
@@ -387,19 +417,19 @@
                        '<li><a href="#public-tv" class="nav-link">Public TV</a></li>';
         } else if (currentRole === 'Receptionist') {
           linksHtml += '<li><a href="#reception-dashboard" class="nav-link">Reception Desk</a></li>' +
-                       '<li><a href="#analytics-dashboard" class="nav-link">📊 Analytics & Charts</a></li>' +
-                       '<li><a href="#public-tv" class="nav-link">Public TV Board</a></li>';
+                       '<li><a href="#analytics-dashboard" class="nav-link">Analytics</a></li>' +
+                       '<li><a href="#public-tv" class="nav-link">Public TV</a></li>';
         } else if (currentRole === 'Queue Operator / Nurse') {
-          linksHtml += '<li><a href="#triage-station" class="nav-link">Triage Nurse Station</a></li>' +
-                       '<li><a href="#analytics-dashboard" class="nav-link">📊 Analytics & Charts</a></li>' +
-                       '<li><a href="#public-tv" class="nav-link">Public TV Board</a></li>';
+          linksHtml += '<li><a href="#triage-station" class="nav-link">Triage Station</a></li>' +
+                       '<li><a href="#analytics-dashboard" class="nav-link">Analytics</a></li>' +
+                       '<li><a href="#public-tv" class="nav-link">Public TV</a></li>';
         } else if (currentRole === 'Doctor') {
           linksHtml += '<li><a href="#doctor-dashboard" class="nav-link">Doctor Workstation</a></li>' +
-                       '<li><a href="#analytics-dashboard" class="nav-link">📊 Analytics & Charts</a></li>' +
-                       '<li><a href="#public-tv" class="nav-link">Public TV Board</a></li>';
+                       '<li><a href="#analytics-dashboard" class="nav-link">Analytics</a></li>' +
+                       '<li><a href="#public-tv" class="nav-link">Public TV</a></li>';
         } else if (currentRole === 'Administrator') {
           linksHtml += '<li><a href="#admin-dashboard" class="nav-link">Admin System</a></li>' +
-                       '<li><a href="#analytics-dashboard" class="nav-link">📊 Analytics & Charts</a></li>' +
+                       '<li><a href="#analytics-dashboard" class="nav-link">Analytics</a></li>' +
                        '<li><a href="#reports-audit" class="nav-link">Audit Trail</a></li>' +
                        '<li><a href="#public-tv" class="nav-link">Public TV</a></li>';
         }
@@ -505,13 +535,16 @@
 
     renderHomeView: function() {
       var container = document.getElementById('home-dept-list');
-      if (!container) return;
-      var depts = global.StorageEngine.getItem('departments', []);
-      var html = '';
-      depts.forEach(function(d) {
-        html += '<div class="glass-card"><h3>' + d.name + ' (' + d.code + ')</h3><p style="color:var(--accent-blue); font-weight:700; margin:6px 0;">📍 ' + (d.block || 'Block A') + ' • ' + (d.floor || 'Floor 1') + '</p><p>' + d.description + '</p><a href="#doctor-directory" class="btn btn-secondary btn-sm" style="margin-top:14px;"><span class="btn-icon">🔍</span> Find Doctors</a></div>';
-      });
-      container.innerHTML = html;
+      if (container) {
+        var depts = global.StorageEngine.getItem('departments', []);
+        var html = '';
+        depts.forEach(function(d) {
+          html += '<div class="glass-card"><h3>' + d.name + ' (' + d.code + ')</h3><p style="color:var(--accent-sage); font-weight:700; margin:6px 0;">📍 ' + (d.block || 'Block A') + ' • ' + (d.floor || 'Floor 1') + '</p><p>' + d.description + '</p><a href="#doctor-directory" class="btn btn-secondary btn-sm" style="margin-top:14px;"><span class="btn-icon">🔍</span> Find Doctors</a></div>';
+        });
+        container.innerHTML = html;
+      }
+
+      if (global.AiEngine) global.AiEngine.renderFlowRadar('home-flow-radar-container');
     },
 
     renderDepartmentsView: function() {
@@ -539,13 +572,16 @@
         var floor = d.floor || (dept ? dept.floor : 'Floor 3');
         var room = d.roomName || (d.roomId ? d.roomId.replace('rm_', 'Room ') : 'Room 304');
 
-        html += '<div class="glass-card"><div class="flex-between"><div><h3>' + d.name + '</h3><p style="margin:4px 0; font-weight:700; color:var(--accent-blue);">' + d.specialty + ' • ' + (dept ? dept.name : '') + '</p><div style="background:#f8fafc; padding:8px 12px; border-radius:var(--radius-sm); border:1px solid var(--border-color); margin:8px 0; font-size:0.88rem;"><div>🏢 <strong>Block:</strong> ' + block + '</div><div>🛗 <strong>Floor:</strong> ' + floor + '</div><div>🚪 <strong>Consult Room:</strong> ' + room + '</div></div><small style="color:var(--text-light);">Experience: ' + d.experience + '</small></div><div><span class="badge badge-confirmed">' + d.status + '</span><br/><br/><a href="#request-appointment" class="btn btn-glow btn-sm"><span class="btn-icon">✉</span> Request Slot</a></div></div></div>';
+        html += '<div class="glass-card"><div class="flex-between"><div><h3>' + d.name + '</h3><p style="margin:4px 0; font-weight:700; color:var(--accent-sage);">' + d.specialty + ' • ' + (dept ? dept.name : '') + '</p><div style="background:#f8fafc; padding:8px 12px; border-radius:var(--radius-sm); border:1px solid var(--border-color); margin:8px 0; font-size:0.88rem;"><div>🏢 <strong>Block:</strong> ' + block + '</div><div>🛗 <strong>Floor:</strong> ' + floor + '</div><div>🚪 <strong>Consult Room:</strong> ' + room + '</div></div><small style="color:var(--text-light);">Experience: ' + d.experience + '</small></div><div><span class="badge badge-confirmed">' + d.status + '</span><br/><br/><a href="#request-appointment" class="btn btn-glow btn-sm"><span class="btn-icon">✉</span> Request Slot</a></div></div></div>';
       });
       container.innerHTML = html;
     },
 
     renderPatientDashboardView: function() {
       var pid = global.AuthEngine.getCurrentPatientId();
+
+      if (global.AiEngine) global.AiEngine.renderPatientRoute('patient-route-container', pid);
+
       var appointments = global.StorageEngine.getItem('appointments', []);
       var doctors = global.StorageEngine.getItem('doctors', []);
       var depts = global.StorageEngine.getItem('departments', []);
@@ -571,7 +607,7 @@
         var floor = a.floor || (doc ? doc.floor : (dept ? dept.floor : 'Floor 3'));
         var room = a.roomName || (doc ? doc.roomName : (a.roomId ? a.roomId.replace('rm_', 'Room ') : 'Room 304'));
 
-        html += '<div class="glass-card" style="margin-bottom:16px;"><div class="flex-between"><div><h3>Appointment #' + a.appointmentId.substring(4) + '</h3><p style="margin:4px 0; font-weight:700; color:var(--accent-blue);">Doctor: ' + (doc ? doc.name : 'Dr. Sarah Jenkins') + '</p><p>Date: ' + a.date + ' at ' + a.startTime + '</p><div style="background:#e0f2fe; color:#0369a1; padding:10px 14px; border-radius:var(--radius-md); margin:10px 0; border:1px solid #bae6fd; font-size:0.92rem;"><div>🏢 <strong>Building Block:</strong> ' + block + '</div><div>🛗 <strong>Floor Level:</strong> ' + floor + '</div><div>🚪 <strong>Consult Room:</strong> ' + room + '</div></div><span class="badge badge-' + a.status.toLowerCase().replace(/_/g, '-') + '">' + a.status + '</span></div><div>';
+        html += '<div class="glass-card" style="margin-bottom:16px;"><div class="flex-between"><div><h3>Appointment #' + a.appointmentId.substring(4) + '</h3><p style="margin:4px 0; font-weight:700; color:var(--accent-sage);">Doctor: ' + (doc ? doc.name : 'Dr. Sarah Jenkins') + '</p><p>Date: ' + a.date + ' at ' + a.startTime + '</p><div style="background:#f8fafc; padding:10px 14px; border-radius:var(--radius-md); margin:10px 0; border:1px solid var(--border-color); font-size:0.92rem;"><div>🏢 <strong>Building Block:</strong> ' + block + '</div><div>🛗 <strong>Floor Level:</strong> ' + floor + '</div><div>🚪 <strong>Consult Room:</strong> ' + room + '</div></div><span class="badge badge-' + a.status.toLowerCase().replace(/_/g, '-') + '">' + a.status + '</span></div><div>';
         if (a.status === 'CONFIRMED') {
           html += '<button onclick="App.doCheckIn(\'' + a.appointmentId + '\')" class="btn btn-primary"><span class="btn-icon">✓</span> Check-In Now</button>';
         } else if (qe) {
@@ -594,6 +630,8 @@
     },
 
     renderReceptionDashboardView: function() {
+      if (global.AiEngine) global.AiEngine.renderQueueBalancerWidget('reception-queue-balancer-container');
+
       var requests = global.StorageEngine.getItem('requests', []);
       var pending = requests.filter(function(r) { return r.status === 'SUBMITTED'; });
       var container = document.getElementById('reception-req-list');
@@ -618,6 +656,12 @@
           global.ModalEngine.alert('Walk-In Token Issued!', 'Token ' + res.token + ' generated for OPD Intake. Proceed to Triage Nurse.', 'success');
         }
         this.renderReceptionDashboardView();
+        if (global.AiEngine) {
+          global.AiEngine.renderFlowRadar('home-flow-radar-container');
+          global.AiEngine.renderFlowRadar('admin-flow-radar-container');
+          global.AiEngine.renderQueueBalancerWidget('admin-queue-balancer-container');
+          global.AiEngine.renderQueueBalancerWidget('reception-queue-balancer-container');
+        }
       }
     },
 
@@ -638,6 +682,10 @@
         if (res.success) {
           if (global.ModalEngine) global.ModalEngine.alert('Appointment Confirmed', 'Appointment request approved and slot allocated!', 'success');
           this.renderReceptionDashboardView();
+          if (global.AiEngine) {
+            global.AiEngine.renderFlowRadar('home-flow-radar-container');
+            global.AiEngine.renderFlowRadar('admin-flow-radar-container');
+          }
         }
       }
     },
@@ -663,7 +711,7 @@
         var waiting = sortedQueue.filter(function(q) { return q.state === 'WAITING'; });
         var html = '';
         waiting.forEach(function(q) {
-          html += '<div class="glass-card flex-between" style="margin-bottom:12px;"><div><strong style="font-size:1.15rem; color:var(--accent-blue);">' + q.token + '</strong> <span class="badge badge-priority-' + q.priority.toLowerCase() + '">' + q.priority + '</span><br/><small style="color:var(--text-light);">Admitted: ' + new Date(q.admittedAt).toLocaleTimeString() + '</small></div><span class="badge badge-waiting">WAITING</span></div>';
+          html += '<div class="glass-card flex-between" style="margin-bottom:12px;"><div><strong style="font-size:1.15rem; color:var(--accent-sage);">' + q.token + '</strong> <span class="badge badge-priority-' + q.priority.toLowerCase() + '">' + q.priority + '</span><br/><small style="color:var(--text-light);">Admitted: ' + new Date(q.admittedAt).toLocaleTimeString() + '</small></div><span class="badge badge-waiting">WAITING</span></div>';
         });
         queueContainer.innerHTML = html || '<p style="color:var(--text-muted);">No waiting tokens in queue.</p>';
       }
@@ -674,6 +722,11 @@
       var res = global.QueueEngine.callNextToken(docId);
       if (res.success) {
         this.renderDoctorDashboardView();
+        if (global.AiEngine) {
+          global.AiEngine.renderFlowRadar('home-flow-radar-container');
+          global.AiEngine.renderFlowRadar('admin-flow-radar-container');
+          global.AiEngine.renderQueueBalancerWidget('admin-queue-balancer-container');
+        }
       } else {
         if (global.ModalEngine) global.ModalEngine.alert('Queue Control Notice', res.message, 'info');
       }
@@ -699,6 +752,10 @@
         global.ModalEngine.alert('Consultation Completed', 'Visit record and prescriptions saved to patient wallet!', 'success');
       }
       this.renderDoctorDashboardView();
+      if (global.AiEngine) {
+        global.AiEngine.renderFlowRadar('home-flow-radar-container');
+        global.AiEngine.renderFlowRadar('admin-flow-radar-container');
+      }
     },
 
     renderLiveQueueView: function() {
@@ -724,8 +781,9 @@
       var floor = myEntry.floor || (doc ? doc.floor : (dept ? dept.floor : 'Floor 3'));
       var room = myEntry.roomName || (doc ? doc.roomName : (myEntry.roomId ? myEntry.roomId.replace('rm_', 'Room ') : 'Room 304'));
 
-      var estWait = global.QueueEngine.calculateWaitTime(myEntry.queueEntryId);
-      container.innerHTML = '<div class="now-serving-box"><p>YOUR LIVE QUEUE TOKEN</p><div class="token-display-number">' + myEntry.token + '</div><p class="token-room-number">Status: ' + myEntry.state + '</p><div style="background:rgba(255,255,255,0.18); padding:16px; border-radius:var(--radius-md); margin:18px 0; text-align:left; font-size:1.05rem; line-height:1.6;"><div>🏢 <strong>Building Block:</strong> ' + block + '</div><div>🛗 <strong>Floor Level:</strong> ' + floor + '</div><div>🚪 <strong>Consult Room:</strong> ' + room + '</div></div><div style="margin-top:12px; font-size:1.15rem; color:#e0f2fe;">Estimated Wait Duration: <strong>' + estWait + ' minutes</strong></div></div>';
+      var pred = global.AiEngine ? global.AiEngine.calculatePredictiveWait(myEntry.queueEntryId) : { mins: 14, confidence: 'High (94%)', ahead: 2 };
+
+      container.innerHTML = '<div class="now-serving-box"><p>YOUR LIVE QUEUE TOKEN</p><div class="token-display-number">' + myEntry.token + '</div><p class="token-room-number">Status: ' + myEntry.state + '</p><div style="background:rgba(255,255,255,0.18); padding:16px; border-radius:var(--radius-md); margin:18px 0; text-align:left; font-size:1.05rem; line-height:1.6;"><div>🏢 <strong>Building Block:</strong> ' + block + '</div><div>🛗 <strong>Floor Level:</strong> ' + floor + '</div><div>🚪 <strong>Consult Room:</strong> ' + room + '</div></div><div style="margin-top:12px; font-size:1.15rem; color:#e0f2fe;">Predictive Wait Estimate: <strong>' + pred.mins + ' minutes</strong> <span class="badge badge-submitted" style="font-size:0.78rem;">Confidence: ' + pred.confidence + '</span><br/><small style="font-size:0.8rem; opacity:0.85;">(' + pred.ahead + ' patients ahead • ' + pred.speed + 'm avg consult speed)</small></div></div>';
     },
 
     renderPublicTVView: function() {
@@ -737,7 +795,7 @@
 
       var html = '';
       active.forEach(function(q) {
-        html += '<div class="glass-card text-center" style="background:#ffffff; border-color:var(--accent-blue);"><div style="font-size:2.6rem; font-weight:900; color:var(--accent-blue);">' + q.token + '</div><div style="font-size:1.1rem; margin-top:6px; font-weight:700;">Room ' + q.roomId.replace('rm_', '') + '</div><span class="badge badge-' + q.state.toLowerCase() + '" style="margin-top:12px;">' + q.state + '</span></div>';
+        html += '<div class="glass-card text-center" style="background:#ffffff; border-color:var(--accent-sage);"><div style="font-size:2.6rem; font-weight:900; color:var(--accent-sage);">' + q.token + '</div><div style="font-size:1.1rem; margin-top:6px; font-weight:700;">Room ' + q.roomId.replace('rm_', '') + '</div><span class="badge badge-' + q.state.toLowerCase() + '" style="margin-top:12px;">' + q.state + '</span></div>';
       });
       container.innerHTML = html || '<p style="color:var(--text-muted);">No active queue tokens in waiting area.</p>';
     },
@@ -751,6 +809,11 @@
       var statsContainer = document.getElementById('admin-stats');
       if (statsContainer) {
         statsContainer.innerHTML = '<div class="grid-4"><div class="glass-card"><h4>Departments</h4><h2>' + depts.length + '</h2></div><div class="glass-card"><h4>Doctors</h4><h2>' + docs.length + '</h2></div><div class="glass-card"><h4>Appointments</h4><h2>' + apts.length + '</h2></div><div class="glass-card"><h4>Active Tokens</h4><h2>' + qe.length + '</h2></div></div>';
+      }
+
+      if (global.AiEngine) {
+        global.AiEngine.renderQueueBalancerWidget('admin-queue-balancer-container');
+        global.AiEngine.renderFlowRadar('admin-flow-radar-container');
       }
     },
 
